@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  default:
+    image: ${DOCKER_REGISTRY}default
+    build:
+      context: .
+      dockerfile: Default/Dockerfile
