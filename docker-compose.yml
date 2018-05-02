@@ -6,3 +6,10 @@ services:
     build:
       context: .
       dockerfile: Default/Dockerfile
+
+  custom:
+    image: ${DOCKER_REGISTRY}custom
+    build:
+      context: .
+      dockerfile: Custom/Dockerfile
+

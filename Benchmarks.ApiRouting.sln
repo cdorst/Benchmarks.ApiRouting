@@ -3,9 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27625.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Default", "Default\Default.csproj", "{11247072-8184-4DE9-91D4-7193D43A3270}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Default", "Default\Default.csproj", "{11247072-8184-4DE9-91D4-7193D43A3270}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{B11C6A3F-7542-4F09-ACA5-59B34A33D7FB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Custom", "Custom\Custom.csproj", "{7A304230-1918-4D86-AEEE-F0B4B630403B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Benchmarks", "Benchmarks\Benchmarks.csproj", "{7641F2F8-8A60-415F-AD22-36D57A57A0DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0E968D3A-D601-4DFD-BF4F-FBFABFF0DC1A}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		run.ps1 = run.ps1
+		run.sh = run.sh
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +32,14 @@ Global
 		{B11C6A3F-7542-4F09-ACA5-59B34A33D7FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B11C6A3F-7542-4F09-ACA5-59B34A33D7FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B11C6A3F-7542-4F09-ACA5-59B34A33D7FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A304230-1918-4D86-AEEE-F0B4B630403B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A304230-1918-4D86-AEEE-F0B4B630403B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A304230-1918-4D86-AEEE-F0B4B630403B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A304230-1918-4D86-AEEE-F0B4B630403B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7641F2F8-8A60-415F-AD22-36D57A57A0DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7641F2F8-8A60-415F-AD22-36D57A57A0DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7641F2F8-8A60-415F-AD22-36D57A57A0DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7641F2F8-8A60-415F-AD22-36D57A57A0DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
