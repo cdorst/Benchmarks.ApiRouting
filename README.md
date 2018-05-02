@@ -41,4 +41,4 @@ LaunchCount=10
 
 ## Conclusion
 
-As expected, requests with the `Routing` middleware directly (and not using `MVC`) results in faster average server response times.
+As expected, requests with the `Routing` middleware directly (and not using `MVC`) result in faster average server response times.

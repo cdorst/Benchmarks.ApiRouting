@@ -30,7 +30,7 @@ namespace Benchmarks
     {
         static void Main(string[] args)
         {
-            //var summary = BenchmarkRunner.Run<Tests>();
+            var summary = BenchmarkRunner.Run<Tests>();
             var readme = new StringBuilder()
                 .Append("# ASP.NET Core MVC middleware benchmarks")
                 .AppendLine()
@@ -63,7 +63,7 @@ namespace Benchmarks
             readme.AppendLine()
                 .AppendLine("## Conclusion")
                 .AppendLine()
-                .AppendLine("As expected, requests with the `Routing` middleware directly (and not using `MVC`) results in faster average server response times.");
+                .AppendLine("As expected, requests with the `Routing` middleware directly (and not using `MVC`) result in faster average server response times.");
             File.WriteAllText("../README.md", readme.ToString());
         }
     }
