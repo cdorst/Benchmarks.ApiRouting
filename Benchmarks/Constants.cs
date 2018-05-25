@@ -9,5 +9,6 @@ namespace Benchmarks
 
         public static readonly HttpClient Custom = new HttpClient() { BaseAddress = new Uri("https://localhost:44355") };
         public static readonly HttpClient Default = new HttpClient() { BaseAddress = new Uri("https://localhost:44387") };
+        public static readonly HttpClient KestrelApp = new HttpClient() { BaseAddress = new Uri("https://localhost:44303") };
     }
 }
