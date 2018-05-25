@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
-using System.Threading.Tasks;
+using static Entities.Constants;
 
 namespace Custom
 {
@@ -19,9 +19,13 @@ namespace Custom
         {
             app.UseRouter(routes =>
             {
-                routes.MapGet("api/1/{id:int}", context =>
+                routes.MapGet("api/1/{id:int}", async context =>
                 {
-                    return context.Response.WriteAsync($"Id: {context.GetRouteValue(id)}");
+                    var payload = EntityConstant.ToReadonlyMemory();
+                    var response = context.Response;
+                    response.StatusCode = StatusCodes.Status200OK;
+                    response.ContentLength = payload.Length;
+                    await response.Body.WriteAsync(payload);
                 });
             });
         }

@@ -13,21 +13,21 @@
 </head>
 <body>
 <pre><code>
-BenchmarkDotNet=v0.10.14, OS=Windows 10.0.16299.371 (1709/FallCreatorsUpdate/Redstone3)
+BenchmarkDotNet=v0.10.14, OS=Windows 10.0.17134
 Intel Core i7-7700HQ CPU 2.80GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
-Frequency=2742186 Hz, Resolution=364.6726 ns, Timer=TSC
-.NET Core SDK=2.1.300-preview2-008533
-  [Host]     : .NET Core 2.0.7 (CoreCLR 4.6.26328.01, CoreFX 4.6.26403.03), 64bit RyuJIT
-  Job-YRHFRF : .NET Core 2.0.7 (CoreCLR 4.6.26328.01, CoreFX 4.6.26403.03), 64bit RyuJIT
+.NET Core SDK=2.1.300-rc1-008673
+  [Host] : .NET Core 2.1.0-rc1 (CoreCLR 4.6.26426.02, CoreFX 4.6.26426.04), 64bit RyuJIT
+  Core   : .NET Core 2.1.0-rc1 (CoreCLR 4.6.26426.02, CoreFX 4.6.26426.04), 64bit RyuJIT
 </code></pre>
-<pre><code>LaunchCount=10  
+<pre><code>Job=Core  Runtime=Core  
 </code></pre>
 
 <table>
 <thead><tr><th>  Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Rank</th>
 </tr>
-</thead><tbody><tr><td>CustomRouting</td><td>1.146 ms</td><td>0.0094 ms</td><td>0.0661 ms</td><td>1</td>
-</tr><tr><td>DefaultRouting</td><td>1.315 ms</td><td>0.0090 ms</td><td>0.0511 ms</td><td>2</td>
+</thead><tbody><tr><td>CustomRouting</td><td>713.0 us</td><td>14.26 us</td><td>25.71 us</td><td>1</td>
+</tr><tr><td>DefaultRouting</td><td>824.4 us</td><td>16.04 us</td><td>24.50 us</td><td>2</td>
+</tr><tr><td>KestrelHttpApp</td><td>3,423.6 us</td><td>109.85 us</td><td>320.43 us</td><td>3</td>
 </tr></tbody></table>
 </body>
 </html>

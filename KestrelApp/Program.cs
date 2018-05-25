@@ -14,8 +14,7 @@ namespace KestrelApp
             => new WebHostBuilder()
                 .ConfigureLogging(logging => logging.ClearProviders())
                 .UseKestrel((context, options)
-                    => options.ListenAnyIP(44303, builder
-                        => builder.UseHttps().UseHttpApplication<KestrelHttpApplication>()))
+                    => options.ListenAnyIP(80, builder => builder.UseHttpApplication<KestrelHttpApplication>()))
                 .UseStartup<Startup>();
     }
 }

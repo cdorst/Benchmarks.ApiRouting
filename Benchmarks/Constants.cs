@@ -7,8 +7,8 @@ namespace Benchmarks
     {
         public const string Route = "/api/1/5";
 
-        public static readonly HttpClient Custom = new HttpClient() { BaseAddress = new Uri("https://localhost:44355") };
-        public static readonly HttpClient Default = new HttpClient() { BaseAddress = new Uri("https://localhost:44387") };
-        public static readonly HttpClient KestrelApp = new HttpClient() { BaseAddress = new Uri("https://localhost:44303") };
+        public static readonly HttpClient Custom = new HttpClient() { BaseAddress = new Uri("http://localhost:15656") };
+        public static readonly HttpClient Default = new HttpClient() { BaseAddress = new Uri("http://localhost:15647") };
+        public static readonly HttpClient KestrelApp = new HttpClient() { BaseAddress = new Uri("http://localhost:2309") };
     }
 }

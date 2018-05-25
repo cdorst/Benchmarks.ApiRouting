@@ -13,7 +13,7 @@ using static Benchmarks.Constants;
 namespace Benchmarks
 {
 
-    [SimpleJob(10)]
+    [CoreJob]//[SimpleJob(10)]
     [RPlotExporter, RankColumn]
     public class Tests
     {
@@ -34,7 +34,12 @@ namespace Benchmarks
     {
         static void Main(string[] args)
         {
-            var summary = BenchmarkRunner.Run<Tests>();
+            BenchmarkRunner.Run<Tests>();
+            //WriteReadmeFile();
+        }
+
+        private static void WriteReadmeFile()
+        {
             var readme = new StringBuilder()
                 .Append("# ASP.NET Core MVC middleware benchmarks")
                 .AppendLine()

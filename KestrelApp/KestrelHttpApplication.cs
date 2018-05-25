@@ -2,9 +2,9 @@
 using System;
 using System.Buffers;
 using System.IO.Pipelines;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using static Entities.Constants;
 
 namespace KestrelApp
 {
@@ -13,64 +13,33 @@ namespace KestrelApp
         private static readonly AsciiString _eoh = "\r\n\r\n"; // End Of Headers
         private static readonly AsciiString _http11OK = "HTTP/1.1 200 OK\r\n";
         private static readonly AsciiString _headerContentLength = "Content-Length: ";
-        private static readonly AsciiString _resourcePrefix = "Id: ";
 
-        public static class Paths
-        {
-            public static readonly AsciiString ApiResource = "/api";
-            public static readonly int ApiResourcePathLength = ApiResource.Length;
-            public static readonly int ApiResourcePathSlicePosition = ApiResource.Length - 1;
-        }
-
-        private RequestType _requestType;
         private AsciiString _resourceId;
 
         public void OnStartLine(HttpMethod method, HttpVersion version, Span<byte> target, Span<byte> path, Span<byte> query, Span<byte> customMethod, bool pathEncoded)
         {
-            var requestType = RequestType.NotRecognized;
-            if (method == HttpMethod.Get)
-            {
-                if (Paths.ApiResourcePathLength <= path.Length && path.StartsWith(Paths.ApiResource))
-                {
-                    requestType = RequestType.GetBytes;
-                    _resourceId = new AsciiString(
-                        path.Slice(Paths.ApiResourcePathSlicePosition)).ToString()
-                        .Split('/').LastOrDefault();
-                }
-            }
-
-            _requestType = requestType;
         }
 
         public ValueTask ProcessRequestAsync()
         {
-            if (_requestType == RequestType.GetBytes)
-            {
-                var writer = GetWriter(Writer);
+            var payload = EntityConstant.ToReadonlySpan();
+            var writer = GetWriter(Writer);
 
-                // HTTP 1.1 OK
-                writer.Write(_http11OK);
+            // HTTP 1.1 OK
+            writer.Write(_http11OK);
 
-                // Content-Length header
-                writer.Write(_headerContentLength);
-                writer.WriteNumeric((uint)_resourceId.Length);
+            // Content-Length header
+            writer.Write(_headerContentLength);
+            writer.WriteNumeric((uint)payload.Length);
 
-                // End of headers
-                writer.Write(_eoh);
+            // End of headers
+            writer.Write(_eoh);
 
-                // Body
-                writer.Write(_resourcePrefix);
-                writer.Write(_resourceId);
-                writer.Commit();
-            }
+            // Body
+            writer.Write(payload);
+            writer.Commit();
 
             return default;
-        }
-
-        private enum RequestType : byte
-        {
-            NotRecognized,
-            GetBytes
         }
     }
 

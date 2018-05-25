@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using static Entities.Constants;
 
 namespace Default.Controllers
 {
@@ -6,6 +7,7 @@ namespace Default.Controllers
     public class ValuesController : ControllerBase
     {
         [HttpGet("{id}")]
-        public IActionResult Get(int id) => Ok($"Id: {id}");
+        public IActionResult Get(int id)
+            => new ReadOnlyMemoryActionResult(EntityConstant.ToReadonlyMemory());
     }
 }
