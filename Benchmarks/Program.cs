@@ -13,16 +13,16 @@ using static Benchmarks.Constants;
 namespace Benchmarks
 {
 
-    [CoreJob]//[SimpleJob(10)]
+    [SimpleJob(10)]
     [RPlotExporter, RankColumn]
     public class Tests
     {
         [Benchmark]
-        public async Task<HttpResponseMessage> CustomRouting()
+        public async Task<HttpResponseMessage> RoutingMiddleware()
             => await Custom.GetAsync(Route);
 
         [Benchmark]
-        public async Task<HttpResponseMessage> DefaultRouting()
+        public async Task<HttpResponseMessage> MvcController()
             => await Default.GetAsync(Route);
 
         [Benchmark]
@@ -35,7 +35,7 @@ namespace Benchmarks
         static void Main(string[] args)
         {
             BenchmarkRunner.Run<Tests>();
-            //WriteReadmeFile();
+            WriteReadmeFile();
         }
 
         private static void WriteReadmeFile()
@@ -48,21 +48,23 @@ namespace Benchmarks
                 .AppendLine()
                 .AppendLine("## Question")
                 .AppendLine()
-                .AppendLine("For GET-only APIs with simple types, what is the performance benefit (if any) of removing the MVC middleware and working with the routing middleware directly?")
+                .AppendLine("For GET-only APIs with simple types, what is the performance benefit (if any) of removing the MVC middleware and working with the routing middleware directly, or working with Kestrel directly?")
                 .AppendLine()
                 .AppendLine("## Variables")
                 .AppendLine()
-                .AppendLine("Two applications are tested:")
+                .AppendLine("Three applications are tested:")
                 .AppendLine()
-                .AppendLine("- Custom")
-                .AppendLine("- Default")
+                .AppendLine("- Custom (`RoutingMiddleware`)")
+                .AppendLine("- Default (`MvcController`)")
+                .AppendLine("- KestrelApp (`KestrelHttpApp`)")
                 .AppendLine()
                 .AppendLine("The `Custom` application uses the `Routing` middleware (directly) to handle request-handling and response-writing.")
                 .AppendLine("`Default` uses the `MVC` layers of abstraction in addition to the `Routing` middleware.")
+                .AppendLine("`KestrelApp` uses the Kestrel IConnectionBuilder extensions developed for the [Kestrel platform benchmarks](https://github.com/aspnet/KestrelHttpServer/tree/dev/benchmarkapps/PlatformBenchmarks).")
                 .AppendLine()
                 .AppendLine("## Hypothesis")
                 .AppendLine()
-                .AppendLine("Given that `MVC` is layered over the `Routing` middleware, removing those layers should result in less operations and a shorter average runtime for the tested scenario.")
+                .AppendLine("Given that `MVC` is layered over the `Routing` middleware, removing those layers should result in less operations and a shorter average runtime for the tested scenario. Given that `Routing` middleware is layered over Kestrel, using the `IConnectionBuilder` \"Kestrel HTTP Application\" should result in even better performance than `Routing` or `MVC`.")
                 .AppendLine()
                 .AppendLine("## Results")
                 .AppendLine();
@@ -72,7 +74,8 @@ namespace Benchmarks
             readme.AppendLine()
                 .AppendLine("## Conclusion")
                 .AppendLine()
-                .AppendLine("As expected, requests with the `Routing` middleware directly (and not using `MVC`) result in faster average server response times.");
+                .AppendLine("As expected, requests with the `Routing` middleware directly (and not using `MVC`) result in faster average server response times.")
+                .AppendLine("As expected, requests with the \"Kestrel HTTP Application\" are even more performant than `Routing` or `MVC`.");
             File.WriteAllText("../README.md", readme.ToString());
         }
     }

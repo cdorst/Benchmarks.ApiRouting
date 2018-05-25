@@ -16,18 +16,18 @@
 BenchmarkDotNet=v0.10.14, OS=Windows 10.0.17134
 Intel Core i7-7700HQ CPU 2.80GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
 .NET Core SDK=2.1.300-rc1-008673
-  [Host] : .NET Core 2.1.0-rc1 (CoreCLR 4.6.26426.02, CoreFX 4.6.26426.04), 64bit RyuJIT
-  Core   : .NET Core 2.1.0-rc1 (CoreCLR 4.6.26426.02, CoreFX 4.6.26426.04), 64bit RyuJIT
+  [Host]     : .NET Core 2.1.0-rc1 (CoreCLR 4.6.26426.02, CoreFX 4.6.26426.04), 64bit RyuJIT
+  Job-UECWRA : .NET Core 2.1.0-rc1 (CoreCLR 4.6.26426.02, CoreFX 4.6.26426.04), 64bit RyuJIT
 </code></pre>
-<pre><code>Job=Core  Runtime=Core  
+<pre><code>LaunchCount=10  
 </code></pre>
 
 <table>
-<thead><tr><th>  Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Rank</th>
+<thead><tr><th>     Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Rank</th>
 </tr>
-</thead><tbody><tr><td>CustomRouting</td><td>713.0 us</td><td>14.26 us</td><td>25.71 us</td><td>1</td>
-</tr><tr><td>DefaultRouting</td><td>824.4 us</td><td>16.04 us</td><td>24.50 us</td><td>2</td>
-</tr><tr><td>KestrelHttpApp</td><td>3,423.6 us</td><td>109.85 us</td><td>320.43 us</td><td>3</td>
+</thead><tbody><tr><td>RoutingMiddleware</td><td>685.6 us</td><td>4.705 us</td><td>23.93 us</td><td>2</td>
+</tr><tr><td>MvcController</td><td>789.8 us</td><td>5.863 us</td><td>26.13 us</td><td>3</td>
+</tr><tr><td>KestrelHttpApp</td><td>632.3 us</td><td>4.611 us</td><td>23.70 us</td><td>1</td>
 </tr></tbody></table>
 </body>
 </html>
