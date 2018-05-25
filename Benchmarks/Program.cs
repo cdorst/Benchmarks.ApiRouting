@@ -27,7 +27,7 @@ namespace Benchmarks
 
         [Benchmark]
         public async Task<HttpResponseMessage> KestrelHttpApp()
-            => await Default.GetAsync(Route);
+            => await KestrelApp.GetAsync(Route);
     }
 
     class Program
