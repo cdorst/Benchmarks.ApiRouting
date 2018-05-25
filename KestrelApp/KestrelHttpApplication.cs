@@ -14,8 +14,6 @@ namespace KestrelApp
         private static readonly AsciiString _http11OK = "HTTP/1.1 200 OK\r\n";
         private static readonly AsciiString _headerContentLength = "Content-Length: ";
 
-        private AsciiString _resourceId;
-
         public void OnStartLine(HttpMethod method, HttpVersion version, Span<byte> target, Span<byte> path, Span<byte> query, Span<byte> customMethod, bool pathEncoded)
         {
         }
